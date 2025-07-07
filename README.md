@@ -4,16 +4,8 @@ This project simulates delivering an end-to-end cloud data solution for a public
 
 ## 🚀 Stack
 
-| Component                | Tool                                         |
-|--------------------------|----------------------------------------------|
-| Data Ingestion           | Python (`requests`, `pandas`)                |
-| Cloud Platform           | Google Cloud Platform (Free Tier used)       |
-| Storage                  | Google Cloud Storage (raw) + BigQuery        |
-| Processing Engine        | PySpark                                      |
-| Visualization            | Streamlit / Google Looker Studio             |
-| Data Orchestration       | Manual script run / cron (simulated Airflow) |
-| Testing                  | Python `unittest`                            |
-
+ [Read the full architecture overview](architecture.md)
+ 
 ---
 
 ## 🧪 How to Run
