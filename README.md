@@ -37,7 +37,7 @@ streamlit run dashboard_app.py
 | Azure / AWS / GCP                           | GCP used throughout  |
 | Databricks / Spark / Kafka                  | PySpark used         |
 | SQL, Python, R                              | SQL + Python         |
-| Agile methodology                           | `mock_user_stories.md` written |
+| Agile methodology                           | [`mock_user_stories.md`](mock_user_stories.md) written |
 | Consultancy mindset                         | Project framed as client delivery |
 | Public sector context                       | Civic bike data case |
 
