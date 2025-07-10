@@ -13,7 +13,6 @@ CLEAN_DATA_DIR = "data/cleaned"
 PROJECT_ID = "your-gcp-project-id"
 DATASET_ID = "bike_data"
 TABLE_ID = "traffic_counts"
-SERVICE_ACCOUNT_FILE = "gcp_credentials.json"  # Optional
 
 # Ensure local folders exist
 os.makedirs(RAW_DATA_DIR, exist_ok=True)
@@ -58,7 +57,11 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 def upload_to_bigquery(df: pd.DataFrame):
     print("Uploading to BigQuery...")
     try:
-        credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE)
+        	encoded_key = st.secrets["GCP_CREDENTIALS_B64"]
+            decoded_json = base64.b64decode(encoded_key).decode("utf-8")
+            credentials_info = json.loads(decoded_json)
+
+            credentials = service_account.Credentials.from_service_account_info(credentials_info)
         client = bigquery.Client(credentials=credentials, project=PROJECT_ID)
     except Exception as e:
         print("❌ Skipping BigQuery upload. Reason:", e)

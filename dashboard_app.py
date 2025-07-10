@@ -9,12 +9,15 @@ CLEAN_DATA_DIR = "data/cleaned"
 PROJECT_ID = "your-gcp-project-id"
 DATASET_ID = "bike_data"
 TABLE_ID = "traffic_counts"
-SERVICE_ACCOUNT_FILE = "gcp_credentials.json"
 
 # Load data from BigQuery if possible, otherwise fallback to latest local CSV
 def load_data():
     try:
-        credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE)
+        encoded_key = st.secrets["GCP_CREDENTIALS_B64"]
+        decoded_json = base64.b64decode(encoded_key).decode("utf-8")
+        credentials_info = json.loads(decoded_json)
+
+        credentials = service_account.Credentials.from_service_account_info(credentials_info)
         client = bigquery.Client(credentials=credentials, project=PROJECT_ID)
 
         query = f"""
